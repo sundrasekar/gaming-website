@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Zone | Modern Gaming Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Sticky Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            🎮 GAME ZONE <span class="badge">6 Games</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="#games">Games</a>
+            <a href="#about">About</a>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section (Compact Two-Column) -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-left">
+                <span class="welcome-tag">WELCOME TO</span>
+                <h1>GAME ZONE</h1>
+                <p class="subtitle">Simple Games. Endless Fun.</p>
+                <p class="description">Play quick and interactive browser games built with HTML, CSS and JavaScript.</p>
+                <div class="hero-buttons">
+                    <a href="#games" class="btn btn-primary">Explore Games</a>
+                    <a href="#about" class="btn btn-outline">About</a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="illustration-box">
+                    <div class="emoji-grid">
+                        <span class="grid-emoji">🎮</span>
+                        <span class="grid-emoji">🕹️</span>
+                        <span class="grid-emoji">🐍</span>
+                        <span class="grid-emoji">🧱</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Games Section -->
+    <section id="games" class="games-section">
+        <div class="games-header">
+            <div class="header-text">
+                <h2>GAMES</h2>
+                <p class="section-subtitle">Choose a game and start playing</p>
+            </div>
+            <!-- Compact Modern Search Box -->
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Search games...">
+            </div>
+        </div>
+
+        <div id="noGamesMessage" class="no-games" style="display: none;">
+            No games found.
+        </div>
+
+        <!-- Clean Responsive 3-Column Grid -->
+        <div class="games-container" id="gamesContainer">
+
+            <!-- 1. Snake Game -->
+            <div class="game-card" data-name="Snake Game">
+                <div class="game-icon">🐍</div>
+                <div class="game-content">
+                    <h3>Snake Game</h3>
+                    <span class="category">Arcade</span>
+                    <p class="card-desc">Control the snake, collect food and increase your score without hitting walls.</p>
+                    <button class="play-btn" onclick="playGame('Snake Game')">▶ Play</button>
+                </div>
+            </div>
+
+            <!-- 2. Tic Tac Toe -->
+            <div class="game-card" data-name="Tic Tac Toe">
+                <div class="game-icon">❌⭕</div>
+                <div class="game-content">
+                    <h3>Tic Tac Toe</h3>
+                    <span class="category">Puzzle</span>
+                    <p class="card-desc">Classic 3x3 turn-based strategy puzzle game. Get 3 in a row to win!</p>
+                    <button class="play-btn" onclick="playGame('Tic Tac Toe')">▶ Play</button>
+                </div>
+            </div>
+
+            <!-- 3. Memory Card Match -->
+            <div class="game-card" data-name="Memory Card Match">
+                <div class="game-icon">🧠</div>
+                <div class="game-content">
+                    <h3>Memory Card Match</h3>
+                    <span class="category">Memory</span>
+                    <p class="card-desc">Test your memory skills by flipping cards and finding matching emoji pairs.</p>
+                    <button class="play-btn" onclick="playGame('Memory Card Match')">▶ Play</button>
+                </div>
+            </div>
+
+            <!-- 4. Brick Breaker -->
+            <div class="game-card" data-name="Brick Breaker">
+                <div class="game-icon">🧱</div>
+                <div class="game-content">
+                    <h3>Brick Breaker</h3>
+                    <span class="category">Arcade</span>
+                    <p class="card-desc">Bounce the ball with your paddle to smash all bricks and prevent ball from falling.</p>
+                    <button class="play-btn" onclick="playGame('Brick Breaker')">▶ Play</button>
+                </div>
+            </div>
+
+            <!-- 5. Space Shooter -->
+            <div class="game-card" data-name="Space Shooter">
+                <div class="game-icon">🚀</div>
+                <div class="game-content">
+                    <h3>Space Shooter</h3>
+                    <span class="category">Shooting</span>
+                    <p class="card-desc">Pilot your starship, shoot laser beams, and destroy incoming alien invaders.</p>
+                    <button class="play-btn" onclick="playGame('Space Shooter')">▶ Play</button>
+                </div>
+            </div>
+
+            <!-- 6. Running Game -->
+            <div class="game-card" data-name="Running Game">
+                <div class="game-icon">🏃</div>
+                <div class="game-content">
+                    <h3>Running Game</h3>
+                    <span class="category">Endless Runner</span>
+                    <p class="card-desc">Endless running challenge! Jump over hurdles as speed continuously increases.</p>
+                    <button class="play-btn" onclick="playGame('Running Game')">▶ Play</button>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Game Details Section -->
+        <div id="gameDetails" class="game-details" style="display: none;">
+            <div class="details-header">
+                <h2>GAME DETAILS</h2>
+            </div>
+            <div class="details-body">
+                <p><strong>Game Name:</strong> <span id="detailName">Select a game</span></p>
+                <p><strong>Category:</strong> <span id="detailCategory">---</span></p>
+                <p><strong>Description:</strong> <span id="detailDescription">Click on a game card to view its details.</span></p>
+                <div class="details-actions">
+                    <button id="detailsPlayBtn" class="btn btn-primary">Play Game</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Shared Game Play Area -->
+        <div id="gameArea" class="game-area" style="display: none;">
+            <div class="game-area-header">
+                <h3 id="gameAreaTitle">🕹️ GAME AREA</h3>
+                <button class="close-game-btn" onclick="closeGameArea()">Close Game ✕</button>
+            </div>
+            <div id="gameContainer" class="game-container-inner">
+                <!-- Active game UI injected dynamically -->
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <h2>ABOUT GAME ZONE</h2>
+        <p class="about-desc">
+            Game Zone is a simple browser-based gaming website created using HTML, CSS and JavaScript. It provides quick and interactive mini-games that can be played directly in the browser.
+        </p>
+
+        <div class="about-boxes">
+            <div class="info-box">
+                <div class="box-icon">🌐</div>
+                <h3>HTML</h3>
+                <p>Structure</p>
+            </div>
+            <div class="info-box">
+                <div class="box-icon">🎨</div>
+                <h3>CSS</h3>
+                <p>Design</p>
+            </div>
+            <div class="info-box">
+                <div class="box-icon">⚡</div>
+                <h3>JavaScript</h3>
+                <p>Interaction</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">🎮 GAME ZONE</div>
+        <p class="footer-tagline">"Simple Games. Endless Fun."</p>
+        <p class="footer-copy">© 2026 Game Zone | Week 4 Web Application Task</p>
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
